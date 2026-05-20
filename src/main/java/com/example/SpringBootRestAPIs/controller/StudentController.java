@@ -6,6 +6,7 @@ import com.example.SpringBootRestAPIs.entity.Student;
 import com.example.SpringBootRestAPIs.repository.StudentRepository;
 import com.example.SpringBootRestAPIs.service.StudentService;
 import com.sun.net.httpserver.HttpsServer;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<StudentDTO> createNewStudent(@RequestBody AddStudentRequestDto addStudentRequestDto) {
+    public ResponseEntity<StudentDTO> createNewStudent(@RequestBody @Valid AddStudentRequestDto addStudentRequestDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(studentService.createNewStudent(addStudentRequestDto));
     }
 
